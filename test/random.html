@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Microservices Frontend</title>
+</head>
+<body>
+    <h1>Weather Service</h1>
+    <form method="post" action="/get_weather">
+        <input type="text" name="city" placeholder="Enter city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+    {% if weather %}
+        <h2>Weather in {{ weather.city }}</h2>
+        <p>Temperature: {{ weather.temperature }}K</p>
+        <p>Description: {{ weather.description }}</p>
+    {% endif %}
+
+    <h1>Currency Conversion Service</h1>
+    <form method="post" action="/convert_currency">
+        <input type="number" step="0.01" name="amount" placeholder="Amount" required>
+        <input type="text" name="from_currency" placeholder="From (e.g., USD)" required>
+        <input type="text" name="to_currency" placeholder="To (e.g., EUR)" required>
+        <button type="submit">Convert</button>
+    </form>
+    {% if conversion %}
+        <h2>Conversion Result</h2>
+        <p>{{ conversion.amount }} {{ conversion.from }} = {{ conversion.converted_amount }} {{ conversion.to }}</p>
+    {% endif %}
+
+    <h1>News Service</h1>
+    <form method="post" action="/get_news">
+        <button type="submit">Get News</button>
+    </form>
+    {% if news %}
+        <h2>Latest News</h2>
+        <ul>
+        {% for article in news.headlines %}
+            <li><strong>{{ article.title }}</strong>: {{ article.description }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Service</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Currency Service</h1>
+        <form method="post" action="/convert_currency" class="form-inline justify-content-center">
+            <div class="form-group mb-2">
+                <label for="amount" class="sr-only">Amount</label>
+                <input type="number" class="form-control mr-2" id="amount" name="amount" placeholder="Amount" required>
+            </div>
+            <div class="form-group mb-2">
+                <label for="from_currency" class="sr-only">From</label>
+                <input type="text" class="form-control mr-2" id="from_currency" name="from_currency" placeholder="From" required>
+            </div>
+            <div class="form-group mb-2">
+                <label for="to_currency" class="sr-only">To</label>
+                <input type="text" class="form-control mr-2" id="to_currency" name="to_currency" placeholder="To" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Convert</button>
+        </form>
+        {% if conversion %}
+            <div class="mt-4">
+                <h2>Conversion Result:</h2>
+                <p>{{ conversion }}</p>
+            </div>
+        {% endif %}
+        <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

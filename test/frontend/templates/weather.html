@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Service</title>
+</head>
+<body>
+    <h1>Weather Service</h1>
+    <form method="post" action="/get_weather">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+    {% if weather %}
+        <h2>Weather Data:</h2>
+        <p>{{ weather }}</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>

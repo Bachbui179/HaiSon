@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Service</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Currency Service</h1>
+        <form method="post" action="/convert_currency" class="form-inline justify-content-center">
+            <div class="form-group mb-2">
+                <label for="amount" class="sr-only">Amount</label>
+                <input type="number" class="form-control mr-2" id="amount" name="amount" placeholder="Amount" required>
+            </div>
+            <div class="form-group mb-2">
+                <label for="from_currency" class="sr-only">From</label>
+                <select class="form-control mr-2" id="from_currency" name="from_currency" required>
+                    <option value="" disabled selected>From</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="CHF">CHF - Swiss Franc</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="SEK">SEK - Swedish Krona</option>
+                    <option value="NZD">NZD - New Zealand Dollar</option>
+                    <option value="VND">VND - Vietnamese Dong</option>
+                </select>
+            </div>
+            <div class="form-group mb-2">
+                <label for="to_currency" class="sr-only">To</label>
+                <select class="form-control mr-2" id="to_currency" name="to_currency" required>
+                    <option value="" disabled selected>To</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="CHF">CHF - Swiss Franc</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="SEK">SEK - Swedish Krona</option>
+                    <option value="NZD">NZD - New Zealand Dollar</option>
+                    <option value="VND">VND - Vietnamese Dong</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Convert</button>
+        </form>
+        {% if conversion %}
+            <div class="mt-4">
+                <h2>Conversion Result:</h2>
+                <p class="font-weight-bold">{{ conversion.converted_amount }}</p>
+            </div>
+        {% endif %}
+        <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
